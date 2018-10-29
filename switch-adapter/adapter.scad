@@ -45,7 +45,7 @@ switch_base =  16;
 switch_length = 20;
 switch_hole = 4;
 
-something = 9.4;
+something = 11;
 space = 0.4;
 
 module switch() {
