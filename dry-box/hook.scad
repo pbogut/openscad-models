@@ -1,15 +1,22 @@
 $fn=64;
 
+
+base_r = 18;
+
 // base
 difference() {
     union() {
-        cylinder(h=2, r=15);
-        cylinder(h=2, r=16, r2=15);
+        cylinder(h=2, r=base_r);
+        cylinder(h=2, r=base_r+1, r2=base_r);
     }
     // inner hole for rod
     translate([0, 0, 1]) {
         cylinder(h=2, r=6.2, r2=8.2);
     }
+    translate([14, 0, 0])
+        cylinder(r=1.75, h=3);
+    translate([-14, 0, 0])
+        cylinder(r=1.75, h=3);
 }
 
 // hook
