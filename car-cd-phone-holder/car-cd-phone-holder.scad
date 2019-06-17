@@ -1,9 +1,10 @@
 /* $fn = 100; */
-inner_width = 144; // landscape
-/* inner_width = 73; // portrait */
+/* inner_width = 144; // landscape */
+inner_width = 73; // portrait
 inner_height = 20;
 insert_width = 120;
 insert_depth = 40;
+float_left = true;
 rad = 5;
 thickness = 1.2;
 insert_thickness = 1.6;
@@ -17,6 +18,7 @@ bend_angle=0; // prints better
 side_angle=6;
 cd_sensor_l=23;
 cd_sensor_w=6;
+to_the_left = float_left ? -(insert_width - inner_width) / 2 : 0;
 
 module baseblock(w=55, h=96, r=5, t=9) {
   hull() {
@@ -52,7 +54,8 @@ module phonecase() {
 }
 module phonecase_gap() {
   translate([0, -rad, 0])
-    cube([width,insert_thickness,depth]);
+    translate([to_the_left,0,0])
+      cube([width,insert_thickness,depth]);
 }
 
 module insert() {
@@ -115,10 +118,12 @@ module insert_gap() {
 }
 
 translate([-width / 2,0,0]) {
-  rotate(90, [1,0,0]) {
-    rotate(side_angle, [0,-1,0])
-      rotate(bend_angle, [-1,0,0])
-        phonecase();
+  translate([to_the_left,0,0]) {
+    rotate(90, [1,0,0]) {
+      rotate(side_angle, [0,-1,0])
+        rotate(bend_angle, [-1,0,0])
+          phonecase();
+    }
   }
 
   translate([0-((insert_width - width) / 2), thickness, -rad])
