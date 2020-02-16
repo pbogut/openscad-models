@@ -98,8 +98,8 @@ module paper_holder(size = [90, 90, 40], thickness = thickness, cover=cover, cen
   open_box([x, y, z]);
 }
 
-module phone_holder(height = 15) {
-  x = 75;
+module phone_holder(height = 15, angle = -10, width = 20) {
+  x = 77 + thickness;
   y = 12.6;
   z = 30;
   t = thickness;
@@ -112,12 +112,12 @@ module phone_holder(height = 15) {
 
   difference() {
     hull() {
-      rotate(-20, [1, 0, 0])
+      rotate(angle, [1, 0, 0])
       box([x, y, z]);
       translate([0, 0, - height])
-        cube([75, 22, 5]);
+        cube([x, width, 5]);
     }
-    rotate(-20, [1, 0, 0]) {
+    rotate(angle, [1, 0, 0]) {
         translate([t, t, t])
           cube([x - dt, y - dt, z]);
         rotate(90, [1, 0, 0])
@@ -203,25 +203,28 @@ module usbsdholder(size = [90, 35, 15], deep=10) {
 
 paper_holder([92, 92, 30]);
 translate([0, 92 - thickness, 0])
-  pen_holder([32+thickness, 15, 55], hole=11, space=2);
+  pen_holder([32+thickness, 15, 55], hole=14, space=2);
 
 translate([32, 92 - thickness, 0])
   business_card_holder([60, 15, 45], hole=11, space=2, hole_start=30);
 
 translate([92 - thickness, 0, 0])
-  open_box([75, 50, 10], hole=11, space=2);
+  open_box([53, 40, 10], hole=11, space=2);
 
-translate([92 - thickness, 0, 0])
-  box([25, 50, 5], hole=11, space=2);
+translate([144, 0, 0])
+  open_box([25, 40, 10], hole=11, space=2);
 
-translate([92 - thickness, 50, 10])
-  phone_holder(height=10);
+translate([92 - thickness, 88.75, 17.64])
+  phone_holder(height=18, width=17.64);
 
-translate([92 - thickness, 70-thickness, 0])
-  box([75, 37, 10], hole=11, space=2);
-
-translate([92 - thickness, 92-thickness, 0])
-  open_box([75, 15, 45], hole=11, space=2, hole_start=25);
+translate([92 - thickness, 40-thickness, 0])
+  box([77+thickness, 50.5, 20], hole=11, space=2);
 
 translate([0, 0, -2])
-  cube([167 - thickness, 107 - thickness ,2]);
+  cube([169, 107 - thickness ,2]);
+
+
+
+/* #translate([92, 0.4, 0]) */
+  /* cube([52, 40, 5]); */
+
