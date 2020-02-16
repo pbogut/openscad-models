@@ -5,6 +5,9 @@ inner_height = 20;
 insert_width = 120;
 insert_depth = 40;
 float_left = true;
+charger_hole = 5;
+charger_hole_depth = 6.6;
+charger_hole_width = 12;
 rad = 5;
 thickness = 1.2;
 insert_thickness = 1.6;
@@ -118,26 +121,34 @@ module insert_gap() {
 }
 
 translate([-width / 2,0,0]) {
-  translate([to_the_left,0,0]) {
-    rotate(90, [1,0,0]) {
-      rotate(side_angle, [0,-1,0])
-        rotate(bend_angle, [-1,0,0])
-          phonecase();
+  difference() {
+    union() {
+      translate([to_the_left,0,0]) {
+        rotate(90, [1,0,0]) {
+          rotate(side_angle, [0,-1,0])
+            rotate(bend_angle, [-1,0,0])
+              phonecase();
+        }
+      }
+
+      translate([0-((insert_width - width) / 2), thickness, -rad])
+        insert();
+
+      // fill gap between insert and phone case
+      hull() {
+        rotate(90, [1,0,0]) {
+          rotate(side_angle, [0,-1,0])
+            phonecase_gap();
+        }
+        translate([0-((insert_width - width) / 2), thickness, -rad])
+          insert_gap();
+      }
     }
+
+    translate([to_the_left + (width/2) - (charger_hole_width/2),-(depth/2)+1,-(charger_hole+1)])
+      rotate(90, [1,0,0])
+        rotate(side_angle, [0,-1,0])
+          cube([charger_hole_width, charger_hole, charger_hole_depth]);
   }
-
-  translate([0-((insert_width - width) / 2), thickness, -rad])
-    insert();
-
-// fill gap between insert and phone case
-hull() {
-  rotate(90, [1,0,0]) {
-    rotate(side_angle, [0,-1,0])
-      phonecase_gap();
-  }
-  translate([0-((insert_width - width) / 2), thickness, -rad])
-    insert_gap();
-}
-
 
 }
