@@ -1,14 +1,14 @@
 /* $fn = 100; */
-inner_width = 73;
+inner_width = 77;
 inner_height = 139;
 rad = 5;
 thickness = 0.8;
-depth = 11;
+depth = 10;
 width = inner_width + (thickness * 2) - (2 * rad);
 height = inner_height + (thickness * 2) - (2 * rad);
 buttons_hole = 42;
 buttons_hole_w = 6;
-rant = 7;
+rant = 5;
 over = 70;
 buttons_h = 74;
 
@@ -38,12 +38,12 @@ module phonecase_short() {
   hrant = rant;
   difference() {
     baseblock(w=width, h=short_height, t=depth);
-    hull() {
+    /* hull() { */
       translate([thickness, thickness, thickness])
         baseblock(w=width - (thickness * 2), h=short_height * 2, t=depth - (thickness * 2));
-      translate([thickness + rrant, thickness + rrant, thickness])
-        baseblock(w=width - ((thickness + rrant) * 2), h=short_height - (thickness * 2), t=depth);
-    }
+      translate([thickness + rant, thickness + rant, thickness])
+        baseblock(w=width - (thickness + rrant), h=short_height - (thickness * 2), t=depth);
+    /* } */
     translate([width * 1.5, short_height+rad, rad+thickness])
       rotate(-90, [0, 1, 0])
         cylinder(width * 2, r=rad);
