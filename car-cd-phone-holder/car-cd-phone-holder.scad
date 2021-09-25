@@ -1,20 +1,20 @@
 /* $fn = 100; */
 /* inner_width = 144; // landscape */
-inner_width = 73; // portrait
+inner_width = 79.4; // portrait
+depth = 13;
 inner_height = 20;
 insert_width = 120;
 insert_depth = 40;
 float_left = true;
 charger_hole = 5;
-charger_hole_depth = 6.6;
-charger_hole_width = 12;
+charger_hole_depth = 10.0;
+charger_hole_width = 15;
 rad = 5;
 thickness = 1.2;
 insert_thickness = 1.6;
-depth = 11;
 width = inner_width + (thickness * 2) - (2 * rad);
 height = inner_height + (thickness * 2) - (2 * rad);
-rant = 7;
+rant = 4;
 over = 70;
 /* bend_angle=5; */
 bend_angle=0; // prints better
@@ -38,16 +38,21 @@ module baseblock(w=55, h=96, r=5, t=9) {
 
 
 module phonecase() {
-  rrant = rant * 2;
+  /* rrant = rant * 2; */
+  rrant = rant;
   hrant = rant;
   difference() {
     baseblock(w=width, h=height, t=depth);
-    hull() {
       translate([thickness, thickness, thickness])
         baseblock(w=width - (thickness * 2), h=height * 2, t=depth - (thickness * 2));
       translate([thickness + rrant, thickness + rrant, thickness])
         baseblock(w=width - ((thickness + rrant) * 2), h=height - (thickness * 2), t=depth);
-    }
+    /* hull() { */
+    /*   translate([thickness, thickness, thickness]) */
+    /*     baseblock(w=width - (thickness * 2), h=height * 2, t=depth - (thickness * 2)); */
+    /*   translate([thickness + rrant, thickness + rrant, thickness]) */
+    /*     baseblock(w=width - ((thickness + rrant) * 2), h=height - (thickness * 2), t=depth); */
+    /* } */
     translate([width * 1.5, height+rad, rad+thickness])
       rotate(-90, [0, 1, 0])
         cylinder(width * 2, r=rad);
@@ -145,7 +150,7 @@ translate([-width / 2,0,0]) {
       }
     }
 
-    translate([to_the_left + (width/2) - (charger_hole_width/2),-(depth/2)+1,-(charger_hole+1)])
+    translate([to_the_left + (width/2) - (charger_hole_width/2),-(depth/2)+3,-(charger_hole+1)])
       rotate(90, [1,0,0])
         rotate(side_angle, [0,-1,0])
           cube([charger_hole_width, charger_hole, charger_hole_depth]);
