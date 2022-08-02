@@ -6,8 +6,9 @@ module original() {
 
 module cut_hole(x, y) {
   translate([x, y, 0]) {
-    translate([0, 0, 3])
-    cylinder(h=5, r=6);
+    translate([0, 0, 3]) {
+      cylinder(h=5, r=6);
+    }
     cylinder(h=5, r=2, $fn = 32);
   }
 }
