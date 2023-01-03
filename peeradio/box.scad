@@ -250,7 +250,48 @@ module box(thickness=1.2) {
     translate([outer_w-4, (outer_l/2)-0.3, 0]) {
         cube([2, (outer_l/2), 5]);
     }
-
 }
 
-box();
+module cover(thickness=1.2) {
+    inner_w = 75;
+    inner_l = 90;
+    inner_h = 25;
+    t2 = thickness * 2;
+
+    outer_w = inner_w+t2;
+    outer_l = inner_l+t2;
+    outer_h = inner_h+thickness;
+
+    lid_thickness = 2;
+    clearance=0.2;
+
+    render()
+        difference() {
+            cube([outer_w, outer_l, outer_h+thickness]);
+            cube([outer_w, outer_l, outer_h-lid_thickness]);
+            box();
+            translate([0,thickness,outer_h-lid_thickness])
+                cube([outer_w, clearance, lid_thickness]);
+            translate([thickness,thickness,outer_h-lid_thickness])
+                cube([clearance, outer_l, lid_thickness]);
+            translate([0,thickness+inner_l-clearance,outer_h-lid_thickness])
+                cube([outer_w, clearance, lid_thickness]);
+            translate([thickness+inner_w-clearance,thickness,outer_h-lid_thickness])
+                cube([clearance, outer_l, lid_thickness]);
+            translate([70, thickness+clearance, inner_h-10+0.2])
+                cube([10, 25, 10]);
+
+        }
+    translate([thickness+clearance, inner_w/3, 5])
+        cube([thickness, outer_w/2, inner_h-5]);
+    translate([inner_w-clearance, 30, 5])
+        cube([thickness, 10, inner_h-5]);
+    translate([50, inner_l-clearance, 5])
+        cube([20, thickness, inner_h-5]);
+    translate([40, thickness+clearance, 12.2])
+        cube([10, thickness*2, 14]);
+    /* box(); */
+}
+
+cover();
+/* box(); */
