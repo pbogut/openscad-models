@@ -12,8 +12,8 @@ module bodyLow() {
 
 module hole() {
         $fn=50;
-        translate([0, 18.5, -2.5])
-                cylinder(h=5, r=2.6);
+        translate([0, 18.5, -3])
+                cylinder(h=6, r=2.6);
 }
 
 translate([0, 0, -10]) {
