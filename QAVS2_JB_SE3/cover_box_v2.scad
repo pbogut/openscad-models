@@ -166,59 +166,6 @@ module core_bot() {
   }
 
   // dowyjebbania
-
-  translate([-space_x / 2, -space_y / 2, 0]) {
-    hull() {
-      translate([space_x, 0, 0]) {
-        translate([props_r - corner_r, -props_r + corner_r, 0]) {
-          pieEdge(a = corner_a, rot = 270 + (90 - corner_a) / 2, h = thickness, r = corner_r);
-        }
-      }
-      translate([space_x / 2, space_y / 2, 0]) {
-        translate([-shift1, shift2, 0]) {
-          cylinder(h = 1, r = core_lock_r);
-        }
-      }
-    }
-    hull() {
-      translate([0, 0, 0]) {
-        translate([-props_r + corner_r, -props_r + corner_r, 0]) {
-          pieEdge(a = corner_a, rot = 180 + (90 - corner_a) / 2, h = thickness, r = corner_r);
-        }
-      }
-      translate([space_x / 2, space_y / 2, 0]) {
-        translate([shift1, shift2, 0]) {
-          cylinder(h = 1, r = core_lock_r);
-        }
-      }
-    }
-    hull() {
-      translate([0, space_y, 0]) {
-        translate([-props_r + corner_r, props_r - corner_r, 0]) {
-          pieEdge(a = corner_a, rot = 90 + (90 - corner_a) / 2, h = thickness, r = corner_r);
-        }
-      }
-      translate([space_x / 2, space_y / 2, 0]) {
-        translate([shift1, -shift2, 0]) {
-          cylinder(h = 1, r = core_lock_r);
-        }
-      }
-    }
-    hull() {
-      translate([space_x, space_y, 0]) {
-        translate([props_r - corner_r, props_r - corner_r, 0]) {
-          pieEdge(a = corner_a, rot = 0 + (90 - corner_a) / 2, h = thickness, r = corner_r);
-        }
-      }
-      translate([space_x / 2, space_y / 2, 0]) {
-        translate([-shift1, -shift2, 0]) {
-          cylinder(h = 1, r = core_lock_r);
-        }
-      }
-    }
-  }
-
-  // REAL BOTTOM
   // translate([-space_x / 2, -space_y / 2, 0]) {
   //   hull() {
   //     translate([space_x, 0, 0]) {
@@ -226,23 +173,75 @@ module core_bot() {
   //         pieEdge(a = corner_a, rot = 270 + (90 - corner_a) / 2, h = thickness, r = corner_r);
   //       }
   //     }
+  //     translate([space_x / 2, space_y / 2, 0]) {
+  //       translate([-shift1, shift2, 0]) {
+  //         cylinder(h = 1, r = core_lock_r);
+  //       }
+  //     }
+  //   }
+  //   hull() {
   //     translate([0, 0, 0]) {
   //       translate([-props_r + corner_r, -props_r + corner_r, 0]) {
   //         pieEdge(a = corner_a, rot = 180 + (90 - corner_a) / 2, h = thickness, r = corner_r);
   //       }
   //     }
+  //     translate([space_x / 2, space_y / 2, 0]) {
+  //       translate([shift1, shift2, 0]) {
+  //         cylinder(h = 1, r = core_lock_r);
+  //       }
+  //     }
+  //   }
+  //   hull() {
   //     translate([0, space_y, 0]) {
   //       translate([-props_r + corner_r, props_r - corner_r, 0]) {
   //         pieEdge(a = corner_a, rot = 90 + (90 - corner_a) / 2, h = thickness, r = corner_r);
   //       }
   //     }
+  //     translate([space_x / 2, space_y / 2, 0]) {
+  //       translate([shift1, -shift2, 0]) {
+  //         cylinder(h = 1, r = core_lock_r);
+  //       }
+  //     }
+  //   }
+  //   hull() {
   //     translate([space_x, space_y, 0]) {
   //       translate([props_r - corner_r, props_r - corner_r, 0]) {
   //         pieEdge(a = corner_a, rot = 0 + (90 - corner_a) / 2, h = thickness, r = corner_r);
   //       }
   //     }
+  //     translate([space_x / 2, space_y / 2, 0]) {
+  //       translate([-shift1, -shift2, 0]) {
+  //         cylinder(h = 1, r = core_lock_r);
+  //       }
+  //     }
   //   }
   // }
+
+  // REAL BOTTOM
+  translate([-space_x / 2, -space_y / 2, 0]) {
+    hull() {
+      translate([space_x, 0, 0]) {
+        translate([props_r - corner_r, -props_r + corner_r, 0]) {
+          pieEdge(a = corner_a, rot = 270 + (90 - corner_a) / 2, h = thickness, r = corner_r);
+        }
+      }
+      translate([0, 0, 0]) {
+        translate([-props_r + corner_r, -props_r + corner_r, 0]) {
+          pieEdge(a = corner_a, rot = 180 + (90 - corner_a) / 2, h = thickness, r = corner_r);
+        }
+      }
+      translate([0, space_y, 0]) {
+        translate([-props_r + corner_r, props_r - corner_r, 0]) {
+          pieEdge(a = corner_a, rot = 90 + (90 - corner_a) / 2, h = thickness, r = corner_r);
+        }
+      }
+      translate([space_x, space_y, 0]) {
+        translate([props_r - corner_r, props_r - corner_r, 0]) {
+          pieEdge(a = corner_a, rot = 0 + (90 - corner_a) / 2, h = thickness, r = corner_r);
+        }
+      }
+    }
+  }
 }
 
 module box_bot() {
